@@ -13,9 +13,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::get('/', function () {
-    return view('welcome');
+    return view('homepage');
 });
-
 
 Route::group(['prefix' => 'categories'], function() {
 Route::get('/', 'AdminCategoriesController@getAdminListCategory');
@@ -25,3 +24,5 @@ Route::get('edit/{id}', 'AdminCategoriesController@getAdminEditCategory');
 Route::post('edit/{id}', 'AdminCategoriesController@postAdminEditCategory');
 Route::get('delete/{id}', 'AdminCategoriesController@getAdminDeleteCategory');
 });
+Auth::routes();
+Route::get('/homepage', 'HomeController@index');
