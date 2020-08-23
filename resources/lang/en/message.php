@@ -1,8 +1,16 @@
 <?php
 
 return [
+
+    'Add Product' => 'Add Product',
+    'ProductName' => 'Tên Sản Phẩm',
+    'Image' => 'Ảnh sản phẩm',
+    'description' => 'Miêu tả',
+    'price' => 'Giá',
+    'EditProduct' => 'Edit Product',
     'addcate' => 'Add Categories',
     'cate' => 'Category',
+
     'catename' => 'Category Name',
     'Dashboard' => 'Dashboard',
     'List' => 'List',

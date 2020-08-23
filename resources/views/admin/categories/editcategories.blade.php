@@ -11,8 +11,9 @@
                     </div>
                     <div class="card-body card-block">
                         @include('errors.note')
-                        <form method="post">
+                        <form method="post" action="{{asset('admin/categories/'.$editcate->id)}}">
                             {{csrf_field()}}
+                            @method('PUT')
                             <div class="form-group">
                                 <label class=" form-control-label">{{ trans('message.catename')}}</label>
                                     <div class="input-group">

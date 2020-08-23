@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Route;
 |--------------------------------------------------------------------------
 | Web Routes
 |--------------------------------------------------------------------------
-|
+| Route::resource('categories', 'AdminCategoriesController');
 | Here is where you can register web routes for your application. These
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
@@ -14,6 +14,10 @@ use Illuminate\Support\Facades\Route;
 */
 Route::get('/', function () {
     return view('welcome');
+});
+Route::group(['prefix' => 'admin'], function() {
+    Route::resource('product', 'AdminProductController');
+    Route::resource('categories', 'AdminCategoriesController');
 });
 
 
@@ -25,3 +29,5 @@ Route::get('edit/{id}', 'AdminCategoriesController@getAdminEditCategory');
 Route::post('edit/{id}', 'AdminCategoriesController@postAdminEditCategory');
 Route::get('delete/{id}', 'AdminCategoriesController@getAdminDeleteCategory');
 });
+Auth::routes();
+Route::get('/homepage', 'HomeController@index');

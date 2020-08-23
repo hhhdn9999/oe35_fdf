@@ -42,8 +42,15 @@
                     <li class="menu-item-has-children dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-table"></i>{{ trans('message.Category')}}</a>
                         <ul class="sub-menu children dropdown-menu">
-                            <li><i class="fa fa-table"></i><a href="{{asset('categories/add')}}">{{ trans('message.AddCategories')}}</a></li>
-                            <li><i class="fa fa-table"></i><a href="{{asset('categories')}}">{{ trans('message.ListCategories')}}</a></li>
+                            <li><i class="fa fa-table"></i><a href="{{asset('admin/categories/create')}}">{{ trans('message.AddCategories')}}</a></li>
+                            <li><i class="fa fa-table"></i><a href="{{asset('admin/categories')}}">{{ trans('message.ListCategories')}}</a></li>
+                        </ul>
+                    </li>
+                    <li class="menu-item-has-children dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-table"></i>{{ trans('message.Product')}}</a>
+                        <ul class="sub-menu children dropdown-menu">
+                            <li><i class="fa fa-table"></i><a href="{{asset('admin/product/create')}}">{{ trans('message.AddProduct')}}</a></li>
+                            <li><i class="fa fa-table"></i><a href="{{asset('admin/product')}}">{{ trans('message.ListProduct')}}</a></li>
                         </ul>
                     </li>
                 </ul>
