@@ -20,7 +20,6 @@ return [
     'sendpasswordsesetlink' => 'Send Password Reset Link',
     'confirmyourpasswordbeforecontinuing' => 'Please confirm your password before continuing.',
 
-
     'dashboard' => 'Dashboard',
     'list' => 'Menu',
     'action' => 'Action',
@@ -36,4 +35,8 @@ return [
     'nameuser' => 'User Name',
     'addresshome' => 'Address',
     'phone' => 'Phone',
+
+
+    'fail' => 'Fail Id failed',
+    'stt' => 'STT',
 ];

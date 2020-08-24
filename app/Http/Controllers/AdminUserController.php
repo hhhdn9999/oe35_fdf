@@ -26,9 +26,12 @@ class AdminUserController extends Controller
     public function delete($id)
     {
         $user = User::find($id);
-        $user->delete();
-        Session::put('message_delete', 'Success');
-
-        return redirect()->back();
+        if( $user != null ){
+            $user->delete();
+            Session::put('message_delete', 'Success');
+            return redirect()->back();
+        } else {
+            return back()->withErrors( trans('message.fail'));
+        }
     }
 }
