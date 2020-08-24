@@ -36,6 +36,7 @@ return [
     'addresshome' => 'Address',
     'phone' => 'Phone',
 
+
     'fail' => 'Fail Id failed',
     'stt' => 'STT',
 ];
