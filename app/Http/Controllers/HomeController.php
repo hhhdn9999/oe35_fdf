@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Product;
+use App\Models\Categories;
+use Illuminate\Support\Facades\Config;
 
 class HomeController extends Controller
 {
@@ -19,6 +22,15 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('homepage');
+        $products = Product::orderby('id', 'asc')->paginate(Config::get('app.paginate'));
+        $categories = Categories::where('parent_id', '=', null)->orderBy('id', 'asc')->select()->get();
+        $categorieChilds = Categories::where('parent_id', '!=', null)->orderBy('id', 'asc')->select()->get();
+        $data = [
+            'products' => $products,
+            'categories' => $categories,
+            'categorieChilds' => $categorieChilds,
+        ];
+
+        return view('homepage',$data);
     }
 }
