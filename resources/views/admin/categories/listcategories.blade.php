@@ -23,8 +23,12 @@
                             <th scope="row">{{$cate->id}}</th>
                             <td>{{$cate->categories_name}}</td>
                             <td>{{$cate->parent_id}}</td>
-                            <td ><a href="{{asset('categories/edit/'.$cate->id)}}"><input type="submit" name="submit" value="Edit" class="btn btn-primary" id="button"></a></td>
-                            <td><a href="{{asset('categories/delete/'.$cate->id)}}"><input type="submit" name="submit" value="Delete" class="btn btn-primary" id="button"></a></td>
+                            <td ><a href="{{asset('admin/categories/'.$cate->id.'/edit')}}"><input type="submit" name="submit" value="Edit" class="btn btn-primary" id="button"></a></td>
+                            <form method="POST" action="{{asset('admin/categories/'.$cate->id)}}">
+                                {{csrf_field()}}
+                                @method('DELETE')
+                                <td><input type="submit" name="submit" value="Delete" class="btn btn-primary" id="button"></td>
+                            </form>
                         </tr>
                         @endforeach
                     </tbody>

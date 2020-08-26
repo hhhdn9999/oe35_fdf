@@ -11,9 +11,9 @@
                     </div>
                     <div class="card-body card-block">
                         @include('errors.note')
-                        <form method="post">
+                        <form method="post" action="{{asset('admin/categories')}}">
                             {{csrf_field()}}
-                            <div class="form-group">
+                            <div class="form-group" action="{{asset('admin/categories')}}">
                                 <label class=" form-control-label">{{ trans('message.catename')}}</label>
                                     <div class="input-group">
                                         <div class="input-group-addon"><i class="fa fa-calendar"></i></div>
