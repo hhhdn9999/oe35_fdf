@@ -161,7 +161,10 @@
                                 </ul>
                             </li>
                             <li><a href="./blog.html">Blog</a></li>
-                            <li><a href="./contact.html">Contact</a></li>
+                            @guest
+                            @else
+                            <li><a href="{{asset('suggest')}}">Góp Ý</a></li>
+                            @endguest
                         </ul>
                     </nav>
                 </div>

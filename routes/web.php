@@ -18,6 +18,9 @@ Route::get('/', function () {
 Route::group(['prefix' => 'admin'], function() {
     Route::resource('product', 'AdminProductController');
     Route::resource('categories', 'AdminCategoriesController');
+    Route::resource('suggest', 'AdminSuggestController')->only([
+    'index', 'update', 'destroy'
+    ]);
 });
 
 Route::group(['prefix' => 'categories'], function() {
@@ -37,3 +40,7 @@ Route::prefix('admin')->group(function() {
         Route::get('delete/{id}', 'AdminUserController@delete')->name('users.delete');
     });
 });
+
+Route::resource('suggest', 'SuggestController')->only([
+    'index', 'store'
+]);
