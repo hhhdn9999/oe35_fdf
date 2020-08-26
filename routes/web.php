@@ -30,3 +30,10 @@ Route::get('delete/{id}', 'AdminCategoriesController@getAdminDeleteCategory');
 });
 Auth::routes();
 Route::get('/homepage', 'HomeController@index');
+
+Route::prefix('admin')->group(function() {
+    Route::prefix('users')->group(function() {
+        Route::get('/', 'AdminUserController@index')->name('users.index');
+        Route::get('delete/{id}', 'AdminUserController@delete')->name('users.delete');
+    });
+});
