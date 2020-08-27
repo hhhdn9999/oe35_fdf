@@ -38,8 +38,7 @@ return [
 
     'AddProduct' => 'Add Product',
     'Product' => 'Product',
-  
-  
+
     'welcome' => 'Welcome to Website!',
     'login'   => 'Login',
     'logout'  => 'Logout',
@@ -78,6 +77,8 @@ return [
 
     'fail' => 'Fail Id failed',
     'stt' => 'STT',
+
+    'vnd' => ' VND'
 ];
 ?>
 
