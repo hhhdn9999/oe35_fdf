@@ -21,7 +21,14 @@ return [
     'Logout' => 'Logout',
     'edit' => 'ID không tồn tại',
     'xoa' => 'ID không tồn tại',
-
+    'gopy' => 'Góp ý',
+    'addgopy' => 'Thêm Góp ý',
+    'lydo' => 'Lý Do',
+    'listgopy' => 'List Góp ý',
+    'chapnhan' => 'Accept',
+    'anh' => 'Ảnh',
+    'iduser' => 'User',
+    'ten' => 'Tên',
     'id' => 'ID',
     'categoriesname' => 'Categories Name',
     'parentid' => 'Parent ID',
@@ -81,4 +88,3 @@ return [
     'vnd' => ' VND'
 ];
 ?>
-

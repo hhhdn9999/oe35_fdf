@@ -13,7 +13,6 @@
                         @include('errors.note')
                         <form method="post" action="{{asset('admin/product')}}"  enctype="multipart/form-data">
                             {{csrf_field()}}
-                            @method('PUT')
                             <div class="form-group">
                                 <label class=" form-control-label">{{ trans('message.ProductName')}}</label>
                                     <div class="input-group">
