@@ -67,7 +67,7 @@
             <div class="col-lg-6">
                 <nav class="header__menu">
                     <ul>
-                        <li class="active"><a href="./index.html">{{ trans('message.home')}}</a></li>
+                        <li class="active"><a href="{{route('homepage')}}">{{ trans('message.home')}}</a></li>
                         <li><a href="./shop-grid.html">Shop</a></li>
                         <li><a href="#">{{ trans('message.page')}}</a>
                             <ul class="header__menu__dropdown">
@@ -89,7 +89,7 @@
                 <div class="header__cart">
                     <ul>
                         <li><a href="#"><i class="fa fa-heart"></i> <span>{{ trans('message.totalfavorite')}}</span></a></li>
-                        <li><a href="#"><i class="fa fa-shopping-bag"></i> <span>{{ trans('message.totalfavorite')}}</span></a></li>
+                        <li><a href="{{route('showcart')}}"><i class="fa fa-shopping-bag"></i> <span>{{ trans('message.totalfavorite')}}</span></a></li>
                     </ul>
                     <div class="header__cart__price">item: <span>{{ trans('message.dolla')}}</span></div>
                 </div>
