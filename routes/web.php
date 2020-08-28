@@ -54,6 +54,8 @@ Route::prefix('cart')->group(function() {
 
 Route::prefix('order')->group(function() {
     Route::get('/place-order', 'OrderController@place_order')->name('place.order');
+    Route::get('ordered/{id}', 'OrderController@ordered')->name('ordered');
+    Route::get('ordered/orderdetail/{id}', 'OrderController@orderdetail')->name('orderdetail');
 });
 
 Route::resource('suggest', 'SuggestController')->only([

@@ -19,7 +19,7 @@ class CreateOrderTable extends Migration
             $table->double('total_price');
             $table->boolean('status')->default(0);
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->timestamps();
+            $table->timestamps()->useCurrent();
         });
     }
 
