@@ -136,5 +136,6 @@ return [
     'pages' => 'Pages',
     'order' => 'Order',
     'gopy' => 'Suggest',
+    'rating' => 'Rating',
 ];
 ?>

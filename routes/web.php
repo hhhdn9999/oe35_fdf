@@ -59,3 +59,16 @@ Route::prefix('order')->group(function() {
 Route::resource('suggest', 'SuggestController')->only([
     'index', 'store'
 ]);
+
+Route::resource('suggest', 'SuggestController')->only([
+    'index', 'store'
+]);
+
+Route::group(['prefix' => 'product/'], function() {
+});
+
+Route::prefix('homepage/productdetail')->group(function() {
+    Route::resources([
+        'rating' => 'ReviewController',
+    ]);
+});
