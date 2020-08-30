@@ -7,6 +7,7 @@ use App\Models\Order;
 use App\Models\OrderDetail;
 use Illuminate\Support\Facades\Redirect;
 use Cart;
+use DB;
 
 use Illuminate\Http\Request;
 
@@ -49,6 +50,40 @@ class OrderController extends Controller
         }else {
 
             return Redirect::route('login');
+        }
+    }
+
+    public function ordered($id)
+    {
+        if( $id != null ){
+            $ordered = DB::table('users')->join('order', 'users.id', '=', 'order.user_id');
+            $ordered = $ordered->where('users.id', '=' ,$id)->get();
+            $data = [
+                'ordered' => $ordered,
+            ];
+
+            return view('pages.components.ordered', $data);
+        } else {
+
+            return back()->withErrors( trans('message.fail'));
+        }
+    }
+
+    public function orderdetail($id)
+    {
+        if( $id != null ){
+            $orderdetail = DB::table('order')->join('order_detail', 'order.id', '=', 'order_detail.order_id')
+                                            ->join('product', 'product.id', '=', 'order_detail.product_id')
+                                            ->join('categories', 'categories.id', '=', 'product.categories_id')
+                                            ->where('order_detail.order_id', '=' ,$id)->get();
+            $data = [
+                'orderdetail' => $orderdetail,
+            ];
+
+            return view('pages.components.orderdetail', $data);
+        } else {
+
+            return back()->withErrors( trans('message.fail'));
         }
     }
 }

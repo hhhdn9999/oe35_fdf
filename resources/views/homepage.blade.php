@@ -27,6 +27,11 @@
                             <h6><a href="#">{{$product->product_name}}</a></h6>
                             <h5>{{$product->price}}{{ trans('message.vnd')}}</h5>
                         </div>
+                        <div class="review-rating pull-right">
+
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star-o"></i>
+                    </div>
                     </div>
                 </div>
             @endforeach

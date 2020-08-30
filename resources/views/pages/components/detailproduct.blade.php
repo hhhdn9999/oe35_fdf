@@ -87,7 +87,7 @@
                         <span class="review-no">{{ trans('message.totalreview')}}</span>
                     </div>
                     <p class="product-description">{{$product->description}}</p>
-                    <h4 class="price">{{ trans('message.currentprice')}}Current price: <span>{{$product->price}}{{ trans('message.vnd')}}</span></h4>
+                    <h4 class="price">{{ trans('message.currentprice')}} : <span>{{$product->price}}{{ trans('message.vnd')}}</span></h4>
                     <form action="{{route('cart')}}" method="post">
                         {{csrf_field()}}
                         <div class="product-btns">
@@ -114,16 +114,77 @@
                 <div class="col-sm-3">
                     <div class="rating-block">
                         <h4>Average user rating</h4>
-                        <h2 class="bold padding-bottom-7">4.3 <small>/ 5</small></h2>
-                        <button type="button" class="btn btn-warning btn-sm" aria-label="Left Align">
-                        <span class="fa fa-star" aria-hidden="true"></span>
-                        </button>
-                        <button type="button" class="btn btn-warning btn-sm" aria-label="Left Align">
-                        <span class="fa fa-star-half-o" aria-hidden="true"></span>
-                        </button>
+                        @php
+                            $totalstar = 0;
+                            $totalreview = 0;
+                            $tamp = 0;
+                            $totalstar5 = 0;
+                            $totalstar4 = 0;
+                            $totalstar3 = 0;
+                            $totalstar2 = 0;
+                            $totalstar1 = 0;
+                        @endphp
+                        @foreach($reviewstars as $reviewstar)
+                            @switch($reviewstar->star)
+                                @case(1)
+                                    @php
+                                    $totalstar1++;
+                                    @endphp
+                                    @break
+                                @case(2)
+                                    @php
+                                    $totalstar2++;
+                                    @endphp
+                                    @break
+                                @case(3)
+                                    @php
+                                    $totalstar3++;
+                                    @endphp
+                                    @break
+                                @case(4)
+                                    @php
+                                    $totalstar4++;
+                                    @endphp
+                                    @break
+                                @case(5)
+                                    @php
+                                    $totalstar5++;
+                                    @endphp
+                                    @break
+                            @endswitch
+
+
+                            @php
+                            $totalreview++;
+                            $totalstar += $reviewstar->star;
+                            @endphp
+                        @endforeach
+                        @if(  $totalreview != 0   )
+                            <h5>{{ $totalreview }}</h5>
+                            <h2 class="bold padding-bottom-7">{{  round($totalstar/$totalreview, 2) }} <small>/ 5</small></h2>
+                            @for($i = 0; $i < round($totalstar/$totalreview); $i++)
+                                @php
+                                    $tamp++;
+                                @endphp
+                                <button type="button" class="btn btn-warning btn-sm" aria-label="Left Align">
+                                <span class="fa fa-star" aria-hidden="true"></span>
+                                </button>
+                            @endfor
+
+                            @if($tamp < round($totalstar/$totalreview, 2))
+                                @php
+                                    $tamp++;
+                                @endphp
+                            <button type="button" class="btn btn-warning btn-sm" aria-label="Left Align">
+                            <span class="fa fa-star-half-o" aria-hidden="true"></span>
+                            </button>
+                            @endif
+                        @endif
+                        @for($i = $tamp; $i < 5; $i++)
                         <button type="button" class="btn btn-warning btn-sm" aria-label="Left Align">
                         <span class="fa fa-star-o" aria-hidden="true"></span>
                         </button>
+                        @endfor
                     </div>
                 </div>
                 <div class="col-sm-3">
@@ -134,12 +195,12 @@
                         </div>
                         <div class="pull-left" style="width:180px;">
                             <div class="progress" style="height:9px; margin:8px 0;">
-                            <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="5" aria-valuemin="0" aria-valuemax="5" style="width: 1000%">
+                            <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="5" aria-valuemin="0" aria-valuemax="5" style="width: @if(  $totalreview != 0   ){{ ($totalstar5/$totalreview)*100 }}% @endif">
                                 <span class="sr-only">80% Complete (danger)</span>
                             </div>
                             </div>
                         </div>
-                        <div class="pull-right" style="margin-left:10px;">1</div>
+                        <div class="pull-right" style="margin-left:10px;">{{ $totalstar5 }}</div>
                     </div>
                     <div class="pull-left">
                         <div class="pull-left" style="width:35px; line-height:1;">
@@ -147,12 +208,12 @@
                         </div>
                         <div class="pull-left" style="width:180px;">
                             <div class="progress" style="height:9px; margin:8px 0;">
-                            <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="4" aria-valuemin="0" aria-valuemax="5" style="width: 80%">
+                            <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="4" aria-valuemin="0" aria-valuemax="5" style="width: @if(  $totalreview != 0   ){{ ($totalstar4/$totalreview)*100 }}% @endif">
                                 <span class="sr-only">80% Complete (danger)</span>
                             </div>
                             </div>
                         </div>
-                        <div class="pull-right" style="margin-left:10px;">1</div>
+                        <div class="pull-right" style="margin-left:10px;">{{ $totalstar4 }}</div>
                     </div>
                     <div class="pull-left">
                         <div class="pull-left" style="width:35px; line-height:1;">
@@ -160,12 +221,12 @@
                         </div>
                         <div class="pull-left" style="width:180px;">
                             <div class="progress" style="height:9px; margin:8px 0;">
-                            <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="3" aria-valuemin="0" aria-valuemax="5" style="width: 60%">
+                            <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="3" aria-valuemin="0" aria-valuemax="5" style="width: @if(  $totalreview != 0   ){{ ($totalstar3/$totalreview)*100 }}% @endif">
                                 <span class="sr-only">80% Complete (danger)</span>
                             </div>
                             </div>
                         </div>
-                        <div class="pull-right" style="margin-left:10px;">0</div>
+                        <div class="pull-right" style="margin-left:10px;">{{ $totalstar3 }}</div>
                     </div>
                     <div class="pull-left">
                         <div class="pull-left" style="width:35px; line-height:1;">
@@ -173,12 +234,12 @@
                         </div>
                         <div class="pull-left" style="width:180px;">
                             <div class="progress" style="height:9px; margin:8px 0;">
-                            <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="2" aria-valuemin="0" aria-valuemax="5" style="width: 40%">
+                            <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="2" aria-valuemin="0" aria-valuemax="5" style="width: @if(  $totalreview != 0   ){{ ($totalstar2/$totalreview)*100 }}% @endif">
                                 <span class="sr-only">80% Complete (danger)</span>
                             </div>
                             </div>
                         </div>
-                        <div class="pull-right" style="margin-left:10px;">0</div>
+                        <div class="pull-right" style="margin-left:10px;">{{ $totalstar2 }}</div>
                     </div>
                     <div class="pull-left">
                         <div class="pull-left" style="width:35px; line-height:1;">
@@ -186,12 +247,12 @@
                         </div>
                         <div class="pull-left" style="width:180px;">
                             <div class="progress" style="height:9px; margin:8px 0;">
-                            <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="1" aria-valuemin="0" aria-valuemax="5" style="width: 20%">
+                            <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="1" aria-valuemin="0" aria-valuemax="5" style="width: @if(  $totalreview != 0   ){{ ($totalstar1/$totalreview)*100 }}% @endif">
                                 <span class="sr-only">80% Complete (danger)</span>
                             </div>
                             </div>
                         </div>
-                        <div class="pull-right" style="margin-left:10px;">0</div>
+                        <div class="pull-right" style="margin-left:10px;">{{ $totalstar1 }}</div>
                     </div>
                 </div>
                 <div class="col-sm-3"></div>
@@ -202,37 +263,55 @@
                 <div class="col-md-6 border">
                     <table>
                         <div class="product-reviews">
-                            <div class="single-review">
-                                <div class="review-heading">
-                                    <div><a href="#"><i class="fa fa-user-o"></i>
-                                                <strong>name user review</strong>
-                                        </a></div>
-                                    <div><a href="#"><i class="fa fa-clock-o"></i> </a> time review</div>
-                                    <div class="review-rating pull-right">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star 0"></i>
-                                            <i class="fa fa-star 0"></i>
-                                            <i class="fa fa-star 0"></i>
-                                            <i class="fa fa-star 0"></i>
+                            @if(isset($reviews))
+                                @foreach($reviews as $review)
+                                    @php
+                                    $star = 0;
+                                    @endphp
+                                    <div class="single-review">
+                                        <div class="review-heading">
+                                            <div><a href="#"><i class="fa fa-user-o"></i>
+                                                        <strong>{{ $review->name_user}}</strong>
+                                                </a></div>
+                                            <div><a href="#"><i class="fa fa-clock-o"></i> </a> {{ $review->created_at }}</div>
+                                            <p>{{ $review->comment }}</p>
+                                            <div class="review-rating pull-right">
+                                                @for($i = 0; $i < $review->star; $i++)
+                                                    @php
+                                                        $star++;
+                                                    @endphp
+                                                    <i class="fa fa-star"></i>
+                                                @endfor
+                                                @for($i = $star; $i < 5; $i++)
+                                                    <i class="icon-star-empty"></i>
+                                                @endfor
+                                            </div>
+                                        </div>
+                                        @if(isset(Auth::user()->id) && Auth::user()->id == $review->user_id)
+                                            <div class="review-body">
+                                                <a style="color:#F8694A" onMouseOver="this.style.color='green'" onMouseOut="this.style.color= '#F8694A' " href="{{route('delete_review', [$product->id, $review->id])}}">delete</a>
+                                            </div>
+                                        @endif
                                     </div>
-                                </div>
-                                <div class="review-body">
-                                    <a style="color:#F8694A" onMouseOver="this.style.color='green'" onMouseOut="this.style.color= '#F8694A' " href="">edit</a> |
-                                    <a style="color:#F8694A" onMouseOver="this.style.color='green'" onMouseOut="this.style.color= '#F8694A' " href="">delete</a>
-                                </div>
-                            </div>
-
+                                @endforeach
+                            @endif
                         </div>
                     </table>
+                    {{ $reviews->links() }}
                 </div>
                 <div class="col-md-6 border">
                     <h4 class="text-uppercase">Write Your Review</h4>
-                    <form class="review-form" method="post" action="{{ route('rating.store', $product->id) }}">
+                    <form class="review-form" method="post" action="{{ route('newrating', $product->id) }}">
                         @csrf
                         <div class="form-group">
                             <textarea class="input pull-left border" name="review_comment" rows="4" cols="50" placeholder="Your review">
                             </textarea>
                         </div>
+                        @if($errors->has('review_comment'))
+                            <span class="error-text" style="color: red;">
+                                {{$errors->first('review_comment')}}
+                            </span>
+                        @endif
                         <br><br>
                         <br><br><br>
                         <div class="form-group">
@@ -240,19 +319,19 @@
                                 <strong class="text-uppercase">Your Rating: </strong><br>
                                 <div class="rating" >
                                 <fieldset class="rating">
-                                    <input type="radio" id="star5" name="rating" value="5" /><label class = "full" for="star5" title="Awesome - 5 stars"></label>
-                                    <input type="radio" id="star4half" name="rating" value="4 and a half" /><label class="half" for="star4half" title="Pretty good - 4.5 stars"></label>
-                                    <input type="radio" id="star4" name="rating" value="4" /><label class = "full" for="star4" title="Pretty good - 4 stars"></label>
-                                    <input type="radio" id="star3half" name="rating" value="3 and a half" /><label class="half" for="star3half" title="Meh - 3.5 stars"></label>
-                                    <input type="radio" id="star3" name="rating" value="3" /><label class = "full" for="star3" title="Meh - 3 stars"></label>
-                                    <input type="radio" id="star2half" name="rating" value="2 and a half" /><label class="half" for="star2half" title="Kinda bad - 2.5 stars"></label>
-                                    <input type="radio" id="star2" name="rating" value="2" /><label class = "full" for="star2" title="Kinda bad - 2 stars"></label>
-                                    <input type="radio" id="star1half" name="rating" value="1 and a half" /><label class="half" for="star1half" title="Meh - 1.5 stars"></label>
-                                    <input type="radio" id="star1" name="rating" value="1" /><label class = "full" for="star1" title="Sucks big time - 1 star"></label>
-                                    <input type="radio" id="starhalf" name="rating" value="half" /><label class="half" for="starhalf" title="Sucks big time - 0.5 stars"></label>
+                                    <input type="radio" id="star5" name="review_star" value="5" /><label class = "full" for="star5" title="Awesome - 5 stars"></label>
+                                    <input type="radio" id="star4" name="review_star" value="4" /><label class = "full" for="star4" title="Pretty good - 4 stars"></label>
+                                    <input type="radio" id="star3" name="review_star" value="3" /><label class = "full" for="star3" title="Meh - 3 stars"></label>
+                                    <input type="radio" id="star2" name="review_star" value="2" /><label class = "full" for="star2" title="Kinda bad - 2 stars"></label>
+                                    <input type="radio" id="star1" name="review_star" value="1" /><label class = "full" for="star1" title="Sucks big time - 1 star"></label>
                                 </fieldset>
                                 </div>
                             </div>
+                            @if($errors->has('review_star'))
+                            <span class="error-text" style="color: red;">
+                                {{$errors->first('review_star')}}
+                            </span>
+                        @endif
                         </div><br><br><br>
                         <!-- <button class="btn btn-info" type="submit">Update review</button> -->
                         <button class="btn btn-info" type="submit">Add review</button>

@@ -5,6 +5,8 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use App\Models\Order;
+use Eloquent;
 
 class User extends Authenticatable
 {
@@ -15,6 +17,7 @@ class User extends Authenticatable
      *
      * @var array
      */
+
     protected $fillable = [
         'name_user',
         'email',
@@ -45,6 +48,6 @@ class User extends Authenticatable
     public function order()
     {
 
-        return $this->hasMany('App\Models\Order');
+        return $this->hasMany(Order::class,  'user_id', 'id');
     }
 }

@@ -60,3 +60,62 @@
         </div>
     </div>
 </section>
+
+
+
+<section class="hero">
+    <div class="container">
+        <div class="row pull-right">
+            <div class="col-sm-12">
+                <form class="form-inline" method="post" action="{{ route('check')}}">
+                    @csrf
+                    <div class="form-group">
+                        <select name="r_rating" id="" class="form-control">
+                            <option value="">Star</option>
+                            <option value="">All</option>
+                            <option value="1">1sao</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <select name="r_categories"  class="form-control">
+                            <option value="">Categories</option>
+                            <option value="">All</option>
+                            @if(isset($all_categories_product))
+                                @php
+                                    $no = 0;
+                                @endphp
+                                @foreach($all_categories_product as $all_categories_product)
+                                    @php
+                                        $no += 1;
+                                    @endphp
+                                    <option value="{{$all_categories_product->id}}" {{\Request::get('all_categories_product') == $all_categories_product->id ? 'selected' : ''}}>{{$no . ".  " . $all_categories_product->categories_name}}</option>
+                                @endforeach
+                            @endif
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <select name="r_price" id="" class="form-control">
+                            <option value="">Price</option>
+                            <option value="">All</option>
+                            @if(isset($prices))
+                                @php
+                                    $no = 0;
+                                @endphp
+                                @foreach($prices as $price)
+                                    @php
+                                        $no += 1;
+                                    @endphp
+                                    <option value="{{$price->price}}" {{\Request::get('price') == $price->price ? 'selected' : ''}}>{{$no . ".  " . $price->price}}</option>
+                                @endforeach
+                            @endif
+                        </select>
+                    </div>
+                    <div class="form-group ">
+                        <input name="r_product_name" type="text" class="form-control"  value="{{\Request::get('product_name')}}" placeholder="Product name ...">
+                    </div>
+                    <button  type="submit" class="btn btn-info">CHECK</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>

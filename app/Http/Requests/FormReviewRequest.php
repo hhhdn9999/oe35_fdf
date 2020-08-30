@@ -13,7 +13,7 @@ class FormReviewRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -21,10 +21,18 @@ class FormReviewRequest extends FormRequest
      *
      * @return array
      */
-    public function rules()
-    {
-        return [
-            //
-        ];
-    }
+     public function rules()
+     {
+         return [
+             'review_comment' => 'required',
+             'review_star' => 'required',
+         ];
+     }
+     public function messages()
+     {
+         return [
+             'review_comment.required' => 'Không được để trống đánh giá.',
+             'review_star.required' => 'Không được để trống star',
+         ];
+     }
 }

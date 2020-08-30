@@ -37,11 +37,19 @@ Route::prefix('admin')->group(function() {
         Route::get('/', 'AdminUserController@index')->name('users.index');
         Route::get('delete/{id}', 'AdminUserController@delete')->name('users.delete');
     });
+    Route::prefix('manage-order')->group(function() {
+        Route::get('/', 'AdminOrderController@index')->name('order.index');
+        Route::get('accept/{id}', 'AdminOrderController@accept')->name('order.accept');
+    });
 });
 
 Route::prefix('/homepage')->group(function() {
     Route::get('/', 'HomeController@index')->name('homepage');
     Route::get('productdetail/{id}', 'HomeController@get_product_detail')->name('get_product_detail');
+    Route::post('checkproduct', 'HomeController@check')->name('check');
+
+    Route::post('productdetail/rating/{id}', 'ReviewController@store_review')->name('newrating');
+    Route::get('productdetail/{id_product}/delete-review/{id_review}', 'ReviewController@delete_review')->name('delete_review');
 });
 
 Route::prefix('cart')->group(function() {
@@ -54,6 +62,8 @@ Route::prefix('cart')->group(function() {
 
 Route::prefix('order')->group(function() {
     Route::get('/place-order', 'OrderController@place_order')->name('place.order');
+    Route::get('ordered/{id}', 'OrderController@ordered')->name('ordered');
+    Route::get('ordered/orderdetail/{id}', 'OrderController@orderdetail')->name('orderdetail');
 });
 
 Route::resource('suggest', 'SuggestController')->only([
@@ -65,10 +75,4 @@ Route::resource('suggest', 'SuggestController')->only([
 ]);
 
 Route::group(['prefix' => 'product/'], function() {
-});
-
-Route::prefix('homepage/productdetail')->group(function() {
-    Route::resources([
-        'rating' => 'ReviewController',
-    ]);
 });
