@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
-use Session;
+use Illuminate\Support\Facades\Config;
 
 class AdminUserController extends Controller
 {
@@ -15,7 +15,7 @@ class AdminUserController extends Controller
      */
     public function index()
     {
-        $user = User::paginate();
+        $user = User::paginate(Config::get('app.paginate'));
         $data = [
             'users' => $user
         ];

@@ -118,8 +118,8 @@
                             <h5>Admin</h5>
                         </a>
                         <div class="user-menu dropdown-menu">
-                            <a class="nav-link" href="#"><i class="fa fa- user"></i>{{ __('message.MyProfile')}}</a>
-                            <a class="nav-link" href="#"><i class="fa fa-power -off"></i>{{ __('message.Logout')}}</a>
+                            <a class="nav-link" href="{{route('homepage')}}"><i class="fa fa- user"></i>Home Page</a>
+                            <a class="nav-link" href="{{route('logout')}}"><i class="fa fa-power -off"></i>{{ __('message.Logout')}}</a>
                         </div>
                     </div>
 

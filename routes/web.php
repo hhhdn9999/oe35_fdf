@@ -70,9 +70,8 @@ Route::resource('suggest', 'SuggestController')->only([
     'index', 'store'
 ]);
 
-Route::resource('suggest', 'SuggestController')->only([
-    'index', 'store'
-]);
+Route::post('/login', 'AuthController@login');
 
-Route::group(['prefix' => 'product/'], function() {
-});
+Route::get('admin', 'AdminCategoriesController@index')->name('admin')->middleware('CheckLevel', 'auth');
+
+Route::get('logout', 'AuthController@logout')->name('logout');

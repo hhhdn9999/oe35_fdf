@@ -34,7 +34,13 @@
                                             @endif
                                         </td>
                                         <td scope="row">
-                                            <a class="btn btn-info" href="{{ route('order.accept', $order->id) }}">{{ trans('message.accept')}}</a>
+                                            @if($order->status == 0)
+                                                <a class="btn btn-info" href="{{ route('order.accept', $order->id) }}">{{ trans('message.accept')}}</a>
+                                            @endif
+                                            @if($order->status == 1)
+                                                <p class="btn btn-dark">{{ trans('message.done')}}</p>
+                                            @endif
+
                                         </td>
                                     </tr>
                                 @endforeach
@@ -48,8 +54,8 @@
                             @endif
                         @endif
                     </p>
-                    @if(isset($users))
-                        {{ $users->links() }}
+                    @if(isset($orders))
+                        {{ $orders->links() }}
                     @endif
                 </div>
             </div>

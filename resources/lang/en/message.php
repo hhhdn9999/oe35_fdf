@@ -152,5 +152,6 @@ return [
     'total_price' => 'Total Price',
     'accept' => 'Accept',
     'homepage' => 'Home',
+    'done' => 'Done',
 ];
 ?>

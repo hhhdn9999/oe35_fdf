@@ -42,7 +42,7 @@
                                 @foreach($orderdetail as $orderdetailrow)
                                     <tr>
                                         <td class="thumb text-center">{{$orderdetailrow->product_name}}</td>
-                                        <td class="thumb text-center">{{$orderdetailrow->product_img}}</td>
+                                        <td class="thumb text-center"><img src="{{asset('image/'.$orderdetailrow->product_img)}}" alt="error"></td>
                                         <td class="thumb text-center">{{$orderdetailrow->categories_name}}</td>
                                         <td class="thumb text-center">{{$orderdetailrow->description}}</td>
                                         <td class="thumb text-center">{{$orderdetailrow->price}} {{ trans('message.vnd')}}</td>

@@ -5,12 +5,13 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Order;
 use DB;
+use Illuminate\Support\Facades\Config;
 
 class AdminOrderController extends Controller
 {
     public function index()
     {
-        $orders = DB::table('users')->join('order', 'users.id', '=', 'order.user_id')->get();
+        $orders = DB::table('users')->join('order', 'users.id', '=', 'order.user_id')->paginate(Config::get('app.paginate'));
         $data = [
             'orders' => $orders,
         ];
