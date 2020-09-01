@@ -154,6 +154,5 @@ return [
     'accept' => 'Accept',
     'homepage' => 'Home',
     'done' => 'Done',
-
 ];
 ?>
