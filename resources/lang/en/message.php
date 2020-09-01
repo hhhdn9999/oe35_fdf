@@ -136,6 +136,7 @@ return [
     'pages' => 'Pages',
     'order' => 'Order',
     'gopy' => 'Suggest',
+
     'rating' => 'Rating',
     'ordered' => 'History Order',
     'status' => 'Status',
@@ -153,5 +154,6 @@ return [
     'accept' => 'Accept',
     'homepage' => 'Home',
     'done' => 'Done',
+
 ];
 ?>

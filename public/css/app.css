@@ -7,6 +7,16 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
 
+<<<<<<< HEAD
+=======
+#img #thumbnil{
+    width: 30%;
+    height: 30%;
+}
+#profile{
+    margin-left: 10%;
+}
+>>>>>>> e0e4da646379636bcb4c6fc8d0dfec2acaf983dc
 :root {
   --blue: #3490dc;
   --indigo: #6574cd;

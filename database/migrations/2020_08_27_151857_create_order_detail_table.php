@@ -22,7 +22,11 @@ class CreateOrderDetailTable extends Migration
             $table->integer('quantity');
             $table->foreign('product_id')->references('id')->on('product')->onDelete('cascade');
             $table->foreign('order_id')->references('id')->on('order')->onDelete('cascade');
+<<<<<<< HEAD
             $table->timestamps()->useCurrent();;
+=======
+            $table->timestamps();
+>>>>>>> e0e4da646379636bcb4c6fc8d0dfec2acaf983dc
         });
     }
 

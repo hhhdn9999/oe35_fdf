@@ -11,6 +11,7 @@ class Order extends Model
     protected $table = 'order';
     protected $primaryKey = 'id';
     protected $guarded = [];
+
     protected $fillable = [
         'user_id',
         'total_price',
@@ -20,16 +21,12 @@ class Order extends Model
     public function user()
     {
 
-        return $this->belongsTo(User::class, 'user_id');
-    }
-
-    public function product() {
-
-        return $this->belongsToMany('App\Models\Product', 'order_detail');
+        return $this->belongTo(User::class);
     }
 
     public function orderdetail()
     {
-        return $this->belongsTo('App\Models\OrderDetail');
+
+        return $this->hasMany(OrderDetail::class);
     }
 }

@@ -9,6 +9,7 @@ class OrderDetail extends Model
     protected $table = 'order_detail';
     protected $primaryKey = 'id';
     protected $guarded = [];
+
     protected $fillable = [
         'product_id',
         'order_id',
@@ -20,12 +21,12 @@ class OrderDetail extends Model
     public function order()
     {
 
-        return $this->belongsTo('App\Models\Order', 'order_id');
+        return $this->belongTo(User::class);
     }
 
     public function product()
     {
 
-        return $this->belongsTo('App\Models\Product', 'product_id');
+        return $this->belongTo(Product::class);
     }
 }
